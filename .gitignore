@@ -1,0 +1,47 @@
+# Core LaTeX auxiliary files
+*.aux
+*.log
+*.lof
+*.lot
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.dvi
+*.ps
+*.pdf # Uncomment if you don't want to track the compiled PDF
+
+# Bibliography files (BibTeX/Biber)
+*.bbl
+*.blg
+*.brf
+
+# Indexing and Glossary files
+*.idx
+*.ind
+*.ilg
+*.glo
+*.glg
+*.gls
+*.ist
+*.acn
+*.acr
+*.alg
+
+# Other common auxiliary files
+*.mtc
+*.mtc1
+*.maf
+*.spl
+*.xdv
+*.gz
+
+# Editor specific files (e.g., backup files)
+*~
+*.bak
+*.swp
+.#*
