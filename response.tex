@@ -1,0 +1,408 @@
+\newpage
+
+\subsection*{Response to Reviewers for EMSE-D-25-00425}
+
+
+We thank the editors and reviewers for their thoughtful, constructive, and detailed feedback. We have carefully revised the paper in response to all comments. Below, we outline the major changes made, organized by the source of feedback. For each comment, we restate the original point and describe how we addressed it.
+
+
+\subsection*{Comments for the authors}
+This paper is an interesting idea which aims at important research field. However, there are several issues in this paper that need to be improved.
+
+\begin{enumerate}[label=\normalfont{Comment \arabic*:}, leftmargin=7.5em]
+\item \normalfont{The evaluation is limited. Many LLMs are mentioned without evaluation.}
+
+\BLUE
+Thank your for that note.
+Please forgive us, that was our fault, we were not clear on the overall goals of those paper.  This study does not attempt to determine which specific LLM architecture is
+optimal for optimization tasks; that question remains for future work. Instead,
+it establishes a clear empirical result: \textbf{LLMs are highly effective
+warm-start mechanisms for software engineering optimization}, outperforming
+long-standing symbolic baselines even in high-dimensional settings. This
+contribution helps fill a documented gap in the SE literature, where only
+$\sim$5\% of LLM papers compare against non-LLM approaches~\cite{Hou24}, and
+where several recent studies report pessimistic assessments of LLM performance.
+Our findings provide robust evidence to the contrary, showing that LLMs deliver
+a substantial and practical advantage when initializing SE optimization
+workflows.
+ 
+We have added this note to the paper \there{R0a} and
+\there{R2c}.
+\BLACK
+
+\item \normalfont{Lack of context and background. Much information is not introduced very well.}
+
+\BLUE
+Thank you for that note. We agree with you that
+this paper needs much careful expansion. As shown in the BLUE text throughout this revision,
+this draft contains many expanded points.
+\BLACK
+
+
+\item \normalfont{Value and highlight potential limitations of the approach are not discussed.}
+
+\BLUE
+You make a good point. Please see our new discussion section where these matters are reviewed.
+\BLACK
+
+
+\end{enumerate}
+
+\subsection*{Response to Reviewer 1}
+We received no comments from reviewer1.
+
+\subsection*{Response to Reviewer 2}
+
+\begin{enumerate}[label=\normalfont{Comment \arabic*:}, leftmargin=7.5em]
+    \item \normalfont{While the paper addresses an important challenge in SE optimization and presents extensive experiments, several serious issues limit its contribution in its current form.
+
+The proposed SynthCore is essentially a repetition of a fixed prompt template with multiple independent runs and aggregation of outputs. This is conceptually very close to established methods such as Self-Consistency prompting and other voting-based ensembles. The paper does not provide a theoretical rationale for why SynthCore is fundamentally different, nor does it include empirical comparisons against these related baselines.
+}\\
+
+\BLUE
+Thank you for the comment. In the previous draft, we did not clearly articulate how our approach differs from self-consistency prompting. Now, in \there{R2a-1} \& \there{R2a-2} 9and Table~\ref{consistent} we provide a detailed explanation of these distinctions and clarify why SynthCore is fundamentally different both conceptually and operationally.
+
+
+\BLACK
+
+\item \normalfont{
+All experiments are conducted on MOOT-like tabular datasets involving multi-objective optimization problems. While these datasets are relevant to certain SE optimization tasks, they do not cover the diversity of labeling problems in software engineering. This narrow scope limits how far
+we can generalize of findings and weakens the broader impact of the proposed method.
+
+}
+
+\BLUE
+Please excuse us, we do not mean to be argumentative,
+but ``just'' restricting the result to tabular higher dimensional multi-objective problems
+actually covers ain interesting   space of problems. While
+working on this revision, we served as 
+ICSE'26 and FSE'26 reviewers. In
+that work, we were assigned four ICSE'26 and  FSE'26 submissions that
+all used a small subset of the data explored here. Those
+papers explored ten data sets, we explore 49. Which is to say that while we ``just'' explore optimization,
+in that sub-arena of SE, our experiments are far more
+extensive than very recent state-of-the-art submissions
+to leading venues. 
+
+Also, we argue that the analysis of tabular
+data is not simplistic or outdated.  Tabular data is widely used. Somvanshi et al. (https://arxiv.org/abs/2410.12034) call it “the most commonly used data format
+in many industries...finance, and transportation.”. Commercial use in data synthesis/privatization
+for health/government (https://ieeexplore.ieee.org/abstract/document/10438420)  GitHub-scale code analytics uses tabular data (e.g., CommitGuru5,
+used in many SE papers). Also, returning to those ICSE'26 and FSE'26 papers we mentioned above, all those papers use case studies expressed  as tabular data.
+
+Further, the  processing of tabular data is challenging, even for LLMs. Somvanshi et al. (https://arxiv.org/abs/2410.12034)
+report that “despite deep learning’s success in image and text domains, tree-based models like 
+XGBoost and Random Forests continue to outperform neural networks on medium-sized tabular
+datasets. This performance gap persists even after extensive hyperparameter tuning."
+\BLACK
+
+\item \normalfont{
+ The evaluation is dominated by results from a single LLM (i.e., Gemini 1.5 Pro). Although other models (e.g., GPT, LLaMA) are briefly mentioned, their results are neither systematically evaluated nor reported in detail. This raises concerns about whether the proposed approach is specific to one model's capabilities. Cross-model experiments are essential to demonstrate that the approach is robust across different LLMs.
+}
+
+\BLUE 
+Thank you for the comment. We agree with your observation and apologize for not making our objective clear in the previous draft. Our goal is not to benchmark the performance of different LLMs for this task, but rather to evaluate how well our LLM-based method, SynthCore, compares against symbolic baselines. To ensure a fair comparison, we selected Gemini 1.5 Pro, a sufficiently capable state-of-the-art model at the time of the study. We have clarified this study design rationale in the revised manuscript at \there{R0a} and \there{R2c}.
+\BLACK
+
+\item \normalfont{ The related work section is disproportionately long and includes extensive repetition of prior results, which could be summarized more concisely. This pushes the presentation of the method to page 12 of a 25-page body, which makes it difficult for readers to quickly grasp the main technical contribution.
+}
+
+\BLUE
+We agree, the old paper was too
+verbose. Here, we have reduced that 8 page section to under 3. Which means our method is introduced far earlier in the paper. 
+\BLACK
+
+\item \normalfont{The results section presents many tables and statistical rankings, but the key takeaways are not clearly distilled. For example, while the data might indicate that SynthCore improves performance in high-dimensional settings, this is not clearly summarized in prose with supporting evidence and effect sizes.
+
+}
+
+\BLUE 
+
+Thank you for the comment. We agree that the previous draft did not sufficiently discuss the implications of our results. In this revision, we have added a dedicated recommendation for practitioners (see \there{R3d}). These recommendations clarify when our methods should or should not be used, given constraints such as available budget, task characteristics, and data dimensionality. We believe these additions provide practical guidance for industry practitioners working on configuration tasks.
+\BLACK
+
+
+\item \normalfont{Other minor issues:
+Page 3, Line 12, a reference is missing
+Page 9, Referenced another Table (i.e., Table 2) in Table 1}
+\BLUE 
+Thank you for the comment. We have fixed the above issues
+
+\BLACK 
+ 
+
+
+\end{enumerate}
+
+
+\subsection*{Response to Reviewer 3}
+
+\begin{enumerate}[label=\normalfont{Comment \arabic*:}, leftmargin=7.5em]
+
+\item \normalfont{The topic of the paper is highly relevant to both empirical SE and AI-for-SE. The experimental setup is rigorous. The authors compare SynthCore to strong baselines (Gaussian Process Models, Tree of Parzen Estimators, standard few-shot LLMs), and the results are convincing when it comes to demonstrating performance improvements in high-dimensional tasks. The approach is methodologically solid. SynthCore is simple yet effective, and relies on well-motivated ensemble learning principles and validated through statistical analysis (Scott-Knott, bootstrapping, Cliff's Delta). Moreover, the authors were good at motivating their approach throughout the paper and the relevance of their methods despite its simplicity. }
+
+\BLUE
+
+Thank you for those kind words
+
+\BLACK
+\item \normalfont{The introduction does not prepare the reader for the core problem space of the paper. Challenges of annotation with LLMs are outlined, but the central focus of the paper: multi-objective optimization, is only briefly mentioned. The authors should better motivate why optimization in SE is important.}
+ 
+
+\BLUE
+Thank you for that comment. You are quite correct, we needed to add more material in that area. Please see \there{R3c}.
+
+\BLACK
+
+\item \normalfont{
+Many critical concepts (multi-objective reasoning, active learning, warm-starts) are only introduced in depth in the related work section. This makes the paper hard to follow, especially for readers that are unfamiliar with the optimization literature. These concepts should be introduced earlier in the paper with concrete examples to help contextualize the contribution.
+}
+
+\BLUE
+ Thank your for emphasizing this point. As mentioned above, we have added brief explanations for the above concepts in the introduction section of this paper. kindly refer \there{R3c}.
+\BLACK
+
+\item \normalfont{The results are well-structured and clearly presented, but the paper does not fully unpack their implications. The discussion section needs more depth in interpreting the findings: What does it mean for practitioners?} 
+
+\BLUE
+Thank you for the follow-up comment. As noted in our response above, the earlier draft did not sufficiently discuss the practical implications of our findings. In addition to those revisions, we have now included a clearer recommendation-for-practitioners section that explains when and where SynthCore should be used. Please refer to \there{R3c}.
+\BLACK
+
+Under what conditions might SynthCore not work well?
+
+
+\BLUE
+Thank you for raising this point. SynthCore is not designed to work well in certain settings, and we explicitly acknowledge these limitations in the revised draft refer \there{R3d-b}. In particular, we have not explored SynthCore on ultra–high-dimensional domains such as audio, or image data, where feature spaces can be extremely large and structured.
+\BLACK
+
+
+How should researchers integrate SynthCore into real-world SE pipelines?   For example, could SynthCore reduce the need for human SME input in industry?
+
+\BLUE
+Thank you for asking these questions. In response to your query,
+we offer a   proposed workflow  \there{R3d-2} and soem general
+notes on the impact of SynthCore 
+at \there{R3g} 
+\BLACK
+
+
+
+ 
+%  Is it feasible to deploy this as part of continuous SE processes?
+
+%  \BLUE
+%  We think so, Please our notes on that at  \there{R3d-2} 
+ 
+% \BLACK
+
+
+%  Overall, the results should be discussed with respect to the nature of high-dimensional optimization tasks. Provide guidance on when to use SynthCore. Discuss the tradeoffs involved in using SynthCore (e.g., does it have increased runtime and LLM costs?) versus simpler prompting approaches.
+
+%   \BLUE
+% Thank you for the comment. As addressed in earlier responses, we have included a recommendation diagram indicating when our methods should be used under specific constraints (see \there{R3c}). Our methods are also an order of magnitude faster than state-of-the-art symbolic approaches such as Gaussian Process models (see \ref{runtimes}). Based on these results, we argue that practitioners can use our guidelines to select and adapt faster methods for multi-objective tasks effectively (see \there{R3d}).
+% \BLACK
+
+
+  
+\BLACK
+\item \normalfont{ Is it feasible to deploy this as part of continuous SE
+processes?}
+
+ \BLUE We think so. Please see our notes on that at \there{R3d-2}.
+\BLACK
+\item \normalfont{ Overall, the results should be discussed with respect to
+the nature of high-dimensional optimization tasks. Provide guidance on when to
+use SynthCore. Discuss the tradeoffs involved in using SynthCore (e.g., does it
+have increased runtime and LLM costs?) versus simpler prompting approaches.}
+
+ \BLUE Thank you for the comment. As addressed in earlier responses, we
+have included a recommendation diagram indicating when our methods should be
+used under specific constraints (see \there{R3c}). Our methods are also an
+order of magnitude faster than state-of-the-art symbolic approaches such as
+Gaussian Process models (see \ref{runtimes}). Based on these results, we argue
+that practitioners can use our guidelines to select and adapt faster methods
+for multi-objective tasks effectively (see \there{R3d}).
+\BLACK
+\item \normalfont{ Are there scenarios where standard few-shot would be
+good enough even in high-dimensional?}
+
+\BLUE Our results suggest not.
+\BLACK
+\item \normalfont{ Make results more actionable. The paper presents
+rankings and performance curves, but readers would also benefit from concrete
+takeaways or heuristics (e.g., "if your SE optimization task has more than X
+features, use SynthCore with budget $\ge 20$). What do the results imply for
+practitioners? For researchers?}
+
+\item \BLUE Thank you for the comment. We agree that the implications of our
+results were not presented clearly in the previous draft. In this revision, we
+have added explicit recommendations for practitioners, supported by a
+recommendation diagram (Figure~\ref{recommend}) that clearly indicates when to
+prefer \textit{SynthCore} over standard few-shot learners. The conclusions in
+this diagram are grounded in the summarized empirical results reported in
+\there{R3d}.
+\BLACK
+\item \normalfont{ Additional comments for the Introduction section: The
+first few lines of the first paragraph need citations.}
+
+ \BLUE Good point.
+Now added.
+\BLACK 
+\item \normalfont{Page 2, line 12: "LLMs appear well-positioned to
+streamline SE data collection pipelines" - Would "data labelling be more
+fitting in the context of the paper?}
+
+ \BLUE We have now
+dropped that sentence.
+\BLACK
+
+\item \normalfont{ Page 3, line 5: "see later in this paper" Where? Be
+more specific. What section?}
+
+ \BLUE We have now added pointers at that point of the paper
+to 
+Table~\ref{lo0},~\ref{med0}~\ref{hi0}.
+\BLACK
+\item \normalfont{ Page 3, line 13: Missing citation.}
+
+ \BLUE We apologize for that, it is rectified.
+\BLACK
+\item \normalfont{ Page 3, line 32: "this paper explores three research
+questions" There are only two research questions.}
+
+ \BLUE We apologize for that, we have corrected in this version to two
+research questions .
+\BLACK
+\item \normalfont{ For each RQ introduced, it is good practice to mention
+a brief motivation for it, and present an overview of the results/findings.
+RQ2 phrasing assumes the answer to RQ1 is "yes". Consider reframing it so that
+it is independent of the previous RQ's outcome.}
+
+ \BLUE Thank you for the suggestion, we have changed the RQs as mentioned.
+Please refer \there{R3e}.
+\BLACK
+\item \normalfont{ Page 4, line 8: "and relatively easy" Based on what?
+Either drop the statement or explain why.}
+
+ \BLUE We have decided to drop the statement.
+\BLACK
+\item \normalfont{ Key concepts introduced too late. Move essential
+context to the introduction or early background. Discuss them in more depth in
+this section. Use concrete examples to contextualize concepts. Definitions of
+terms like "multi-objective optimization" and "active learning" are given, you
+give an example in Table 1, but it is still abstract.}
+
+ \BLUE Thank you, your comment is quite correct. We have added
+the required material, see \there{R3c}.
+\BLACK
+\item \normalfont{ Add short explanations to the definitions. For example,
+if you are discussing warm-starts, you can add "e.g., pre-selecting
+configurations that are likely to perform well when tuning…" Clarify
+assumptions and terminology earlier. The distinction between "LLM annotations",
+"few-shot learners", and "ensemble learners" becomes clear only deep into the
+method sections. Summarize them in a terminology paragraph early.}
+
+ \BLUE Thank you for the suggestion. We have added brief explanations for
+the above concepts in the introduction section of this paper. Kindly refer
+\there{R3c}.
+\BLACK
+\item \normalfont{ Additional comments on Literature Review section:
+Page 4, line 24: You mention MSR in this case as the concept of "mining
+software repositories" but earlier in the paper, it is used as the conference.
+You should define it clearly, some readers may not be familiar with this
+concept or venue.}
+
+ \BLUE Thank you for pointing this out. We have fixed it
+
+\BLACK
+\item \normalfont{ Page 5, line 25: "...this tools three sets of three
+hour meetings hours" Needs rephrasing.}
+\BLUE
+That clumsy section was removed
+in our shortenning of the overly-long related work section.
+\BLACK
+\item \normalfont{ Page 6, line 37: Typo "trainign" $\rightarrow$
+training.}
+
+ \BLUE We apologize, we have fixed it.
+\BLACK
+\item \normalfont{ Page 6, line 46: "The Ahmed et al. study"
+$\rightarrow$ Suggestion: Ahmed et al.}
+
+ \BLUE Thank you for the suggestion, we have made the change.
+\BLACK
+\item \normalfont{ 2.3 Results from Related Work: Very confusing section.
+A lot of background concepts are discussed, some parts of the experimental
+setup of the paper, comparing studies results. Consider reorganizing.}
+
+\BLUE  We agree the structure was confusing. We have significantly
+reorganized that section to separate background concepts from the comparison of
+related work results, making the experimental context clearer. 
+As for earlier backgrpund, please see \there{R3c}.
+\BLACK
+\item \normalfont{ Page 9, line 36: "subject matter experts" has already
+been defined as SMEs. Use the abbreviations when introducing them.}
+
+ \BLUE Thank you for pointing it out, we have fixed the issue.
+\BLACK
+\item \normalfont{ Page 21, line 17: Possible typo "the two lower curves
+can from simple"}
+\BLUE
+That sentence was been reorganized and removed.
+\BLACK
+\item \normalfont{ Page 21, line 45: Possible typo "Tables…show what be
+achieved by…"}
+
+ \BLUE Thank you for pointing it out, we have fixed the issue.
+
+ 
+\BLACK
+\item \normalfont{ Are the results presented in this paper directly tied
+to the selected model? It seems to me that they would be very dependent on the
+model's size, parameters, context size, etc. The justification of the model
+selection was very clear, but it makes me wonder how practical the solution is
+if it requires the best performing state-of-the-art model to be implemented.
+Would you consider repeating your experiment using other models and compare the
+results?}
+
+ \BLUE As we say in \there{R0a}
+our point is not that LLM1 is better than  LLM2 but rather it is that LLM us better than
+symbolic. 
+This draft now clarifies the gains are methodological, not just model
+dependent.  
+
+\end{enumerate}
+
+\subsection*{Response to Reviewer 4}
+\begin{enumerate}[label=\normalfont{Comment \arabic*:}, leftmargin=7.5em]
+
+\item \normalfont{
+The reasons for selecting Gemini 1.5 Pro are stated as "a 1-million-token context window and low cost," yet no baseline comparison data with other mainstream models (e.g., GPT-4o) is provided. For example, what are the differences in single-prompt annotation accuracy and runtime between Gemini 1.5 Pro and GPT-4o in low-, medium-, and high-dimensional tasks? The paper only mentions that "gpt-o1 and gemini-1.5pro yield similar results" without providing specific values (such as the mean Chebyshev distance or rank proportion), making it impossible to verify the rationality of the model selection.
+}
+
+\BLUE
+Thank you for the comment. We apologize for not making our objective clear in the previous draft. Our goal is not to compare or benchmark different LLMs, but rather to compare LLMs with other baseline symbolic methods (UCB, TPE, Bayes Explore/Exploit, etc.). We have clarified this in \there{R2c}; kindly refer to it for details.
+\BLACK
+
+\item \normalfont{
+The paper notes that the MOOT repository contains 49 tasks, including "configuration, Hyperparameter Optimization (HPO), and process," but fails to clarify the specific optimization objectives and evaluation criteria for each individual task. For instance, datasets like "SS-A" and "SS-B" in Table 2 only label "x/y dimensions" without explaining the actual optimization objectives corresponding to the y-values (e.g., whether it is "minimizing runtime" or "maximizing system throughput"). 
+}
+
+\BLUE
+Thank you for the comments. While we initially planned to include the complete parameter specifications for all 49 datasets, space constraints made this infeasible. Consequently, we have provided these details as an external reference. kindly refer \there{R4b}
+\BLACK 
+
+\item \normalfont{Additionally, the paper does not supplementarily explain what specific configuration parameters the "38 x-variables" in the "SQL AllMeasurements" dataset refer to. This prevents readers from judging the representativeness of the datasets for SE tasks.}
+
+\BLUE 
+We appologize for not including these details. However due to space contraints of including 38 varialbe names inside the manuscript we have provided an external reference for these details. kindly refer \there{R4c}.
+\BLACK
+
+\item \normalfont{The paper sets L=0.6B (where L is the number of initial randomly annotated samples) and M=20, but does not explain the rationality of these parameter values. For example: Why is L set to 0.6B instead of 0.5B or 0.7B? Is M=20 determined through experimental validation (e.g., performance comparison with M=10 or M=30) or based on empirical settings? }
+
+\BLUE 
+We apologize for the earlier lack of clarity. According to the Near Enough Optimization (NEO) framework
+(see \there{$4d}) ``near-enough'' solutions are effectively indistinguishable from the true optimum. As shown by the mathematical analysis in \there{R4d}, encountering such a near-optimal solution requires sampling only about 60 times. Our choice of setting $M=20$ follows from the ambition of staying well below this 60-sample NEO threshold. In our experiments, sampling 20 or 30 instances consistently performed as well as sampling any number above this point, with only minimal gains beyond that threshold. Thus, selecting $M=20$ reflects an engineering decision that remains faithful to the NEO theory while keeping the annotation cost low.
+\BLACK
+
+\end{enumerate}

@@ -1,0 +1,82 @@
+\subsection{Algorithms}
+
+After LLMs provide initial warm-start examples, an active learner incrementally selects informative examples for labeling, efficiently refining its predictive model \cite{brochu2010tutorial}.
+
+Active learning strategies include:
+
+\begin{itemize}
+\item \textbf{Cold Start}: Random or unsupervised selection of initial examples.
+\item \textbf{Warm Start}: Leveraging LLM-generated insights for initial example selection \cite{brochu2010tutorial,lustosa2024learning}.
+\end{itemize}
+
+Given an initial labeled set of $n$ examples, active learning proceeds iteratively:
+
+\begin{enumerate}
+\item Acquire the next most informative example based on the current model.
+\item Label this example and add it to the training set.
+\item Update the predictive model.
+\item Repeat until the labeling budget ($B$) is exhausted.
+\item Return the \textbf{best} example as per Equation~\ref{eq:ch}.
+\end{enumerate}
+
+We explore two primary active learning frameworks:
+
+\subsubsection{Gaussian Process Models (GPM)} \label{ssec:gpm}
+
+GPMs predict mean ($\mu$) and standard deviation ($\sigma$) to guide example acquisition \cite{williams1995gaussian,brochu2010tutorial}. We examine the Upper Confidence Bound (UCB) acquisition function:
+
+\begin{equation}
+UCB(x) = \mu(x) + \kappa \sigma(x)
+\end{equation}
+
+Here, $\kappa$ balances exploration (high uncertainty) and exploitation (best predicted areas), adapting as more data is collected.
+
+\subsubsection{Tree-structured Parzen Estimator (TPE)} \label{ssec:tpe}
+
+The Tree-structured Parzen Estimator (TPE) differs from Gaussian Process methods by separately modeling the conditional distributions $p(x|y)$ and the marginal distribution $p(y)$ \cite{bergstra2011algorithms}. TPE splits the data based on objective values into two distinct groups, defined by a threshold $y^*$. Specifically, the conditional probability is represented as:
+
+\begin{equation}
+p(x|y) = \begin{cases}
+l(x), & \text{if } y < y^* \
+g(x), & \text{if } y \geq y^*
+\end{cases}
+\end{equation}
+
+Here, $l(x)$ represents the distribution of high-performing observations, whereas $g(x)$ corresponds to the lower-performing observations. The threshold $y^$ is determined using a quantile $\gamma$, ensuring $p(y < y^) = \gamma$. The primary goal of TPE is to select configurations that maximize the probability under $l(x)$ and minimize it under $g(x)$, optimizing:
+
+\begin{equation}
+\arg\min_x \frac{g(x)}{l(x)}
+\end{equation}
+
+\subsubsection{Large Language Model (LLM) Inference}
+
+LLMs leverage extensive pre-trained knowledge to infer solutions with limited data:
+
+\begin{itemize}
+\item \textit{Zero-shot Learning}: Makes predictions without new labels, effective when appropriate LLMs exist \cite{alhoshan2022zero}.
+\item \textit{Few-shot Learning}: Uses minimal examples ("warm-up prompts") to adapt LLMs quickly, effective in specialized tasks \cite{le2023log,10.1145/3551349.3559555}. Optimal selection of these prompts remains challenging, motivating efficient selection methods like active learning \cite{tawosi2023search}.
+\end{itemize}
+
+Figure~\ref{fig:ensemble learner} illustrates ensemble learning with few-shot data.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{LaTeX_DL_468198_240419/Ensemble.png}
+\caption{Ensemble learning using Few-shot data generation method}
+\label{fig:ensemble learner}
+\end{figure}
+
+\subsubsection{SynthCore}
+
+SynthCore accelerates data exploration by combining active learning with LLM synthesis:
+
+\begin{enumerate}
+\item Randomly select and label initial examples (e.g., 60% of the budget).
+\item Divide labeled examples into best and rest based on Chebyshev distances (see \ref{}).
+\item Prompt an LLM to synthesize improved examples using selected examples as templates.
+\item Label the nearest neighbor of each LLM-synthesized example.
+\item Repeat until budget is depleted.
+\end{enumerate}
+
+Active learners and acquisition functions used are detailed in Tables~\ref{algogpm}, \ref{algotpe}, and sections \S\ref{GPM}, \S\ref{TPE}.
+

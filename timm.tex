@@ -1,0 +1,119 @@
+ recent survey by Gao et al. listed current directions of LLMs in SE. Most of that paper was concerned with:
+
+Software Requirement & Design: Including challenges in translating ambiguous requirements into precise specifications and ensuring LLMs generate designs that are complete, consistent, and meet user needs.
+
+Coding Assistance: Addressing issues related to code completion, generation, and debugging, with a focus on improving the accuracy, efficiency, and security of LLM-generated code.
+
+Testing Code Generation: Concentrating on the automatic generation of test cases and ensuring adequate test coverage, while also tackling the challenges of test data generation and metamorphic testing.
+
+Nowhere in that survey was any mention of multi-objective optimization in software engineering, such as balancing performance, security, and cost in generated code, or addressing trade-offs between different quality attributes during software design and evolution. This suggests a potential gap in current research regarding how LLMs can be guided to satisfy multiple, potentially conflicting objectives in SE tasks
+
+
+
+A recent survey by Hou et al. listed current directions of LLMs in SE. Most of that paper was concerned with:
+
+LLM Architectures & Usage (RQ1): Categorizing different LLM architectures (decoder-only, encoder-decoder, etc.) used in SE, and analyzing their distinctive features and applications in various SE tasks.
+
+SE Datasets for LLMs (RQ2): Examining methodologies for collecting, preprocessing, and utilizing SE-related datasets to train and apply LLMs effectively. This included strategies for data collection, selection criteria, and preprocessing steps.
+
+Optimization & Evaluation (RQ3): Exploring techniques used to optimize LLMs for SE tasks, like Parameter Efficient Fine-Tuning (PEFT) and prompt engineering, as well as evaluation metrics used to assess their performance.
+
+Nowhere in that survey was any mention of explicitly addressing multiple, potentially conflicting objectives simultaneously in SE tasks using LLMs. While the paper covers optimization and evaluation, it doesn't delve into methods for balancing trade-offs between different software qualities (e.g., performance vs. security), or how LLMs can be guided to satisfy multiple, competing stakeholder needs during software development. This suggests a gap in research regarding LLMs' ability to handle inherent multi-objective nature of real-world software engineering problems.
+
+
+=========
+
+1. Specific Papers on Ensembles of Few-Shot Learners:
+
+Based on the context of the original paper and the broader literature, here are some relevant papers that explore ensembles of few-shot learners, along with some key themes:
+
+(From the Original Paper's Context): This paper discusses ensemble learning in few-shot scenarios. Details about this study are missing in the provided paper.
+
+(From the Original Paper's Context): This paper suggests the use of ensemble learners for few shot learners as conventional few shot methods are high in variance. Details about this study are missing in the provided paper.
+
+(From the Original Paper's Context): This paper informs the best practices in selecting good combinations of ensembles for few shot learning. Details about this study are missing in the provided paper.
+
+2. Key Themes and Approaches in Ensembles of Few-Shot Learners:
+
+Variance Reduction: As noted in the original paper, a primary motivation for using ensembles in few-shot learning is to reduce the high variance often associated with individual few-shot models. Ensembles can average out the errors of individual models, leading to more stable and reliable predictions.
+
+Meta-Learning Ensembles: Some approaches combine meta-learning (learning to learn) with ensemble methods. Meta-learning algorithms train models that can quickly adapt to new tasks with limited data. Ensembling multiple meta-learners can further improve generalization and robustness.
+
+Diversity in Ensembles: Creating diverse ensembles is crucial for achieving good performance. Diversity can be achieved by training individual models on different subsets of the data, using different architectures, or employing different learning algorithms.
+
+Prompt Ensembling (for LLMs): In the context of large language models, prompt ensembling involves using multiple prompts to elicit different responses from the LLM and then combining those responses in some way (e.g., averaging probabilities, majority voting). This can improve the accuracy and robustness of LLM predictions.
+
+Strategies for Finding More Papers:
+
+
+
+==================
+
+threats ov alidity
+
+discussison
+conclusion
+
+needs more future work?
+
+
+Okay, I understand. I'll revise the "Threats to Validity" section to use standard terminology and explicitly address specific potential biases.
+
+**Threats to Validity**
+
+Several factors could limit the validity of our findings. **Sampling bias** is a concern, as our study relies exclusively on datasets from the MOOT repository. This collection, while diverse, may not be fully representative of the entire landscape of multi-objective optimization problems in software engineering. Therefore, the extent to which our results generalize beyond these specific tasks is uncertain. **Selection bias** may arise from the specific LLMs used in this study. Limiting our selection to publicly available models introduces a potential bias, as these models might not fully represent the capabilities of all available models. The findings may not be fully representative of the capabilities of all models, including those requiring specialized hardware or proprietary access. There is also a potential **evaluation bias**. While we employed established metrics, they may not fully capture the nuances of LLM performance in this context, particularly with respect to domain-specific knowledge or human-level understanding.
+
+**Discussion Section:**
+
+Our findings demonstrate that LLMs, when used as samplers, offer a promising approach to multi-objective optimization (MOO) problems in SE. The inherent ability of LLMs to generalize from limited data allows them to suggest points, leading to a refined and improved exploration of the search space. The application of LLMs, known for their natural language processing skills, into numerical optimization can yield valuable insights into why some models perform better in certain regions of the design space.
+
+The **SynthCore** method harnesses this generalization capability and identifies critical regions within the search space even from few-shot examples, providing a more informed start to the active learning process. Compared to the GPM based acquisition functions, UCB, PI, and EI, and TPE-based acquisition functions Explore and Exploit, our methods provide insight into the problem domain. LLMs leverage pre-existing knowledge, leading to a potential variance reduction property of ensemble models. This subsequently leads to improved generalization, robustness, and a reduced likelihood of converging to local optima. Our finding challenges the assumption that LLMs need vast quantities of domain specific information.
+
+The study has highlighted the potential of LLMs in SE. The use of LLMs allows for reducing the extensive need to collect large scale SE data across a variety of tasks. By applying active learning techniques, there may be less need for extensive manual effort from subject matter experts (SMEs) to ensure quality. This can also alleviate the impact of biased data collection practices, which, if left unaddressed, could skew the model's ability to generalize effectively across different datasets. The use of LLMs could democratize engineering.
+
+The application of LLMs to the SE domain holds exciting potential for automated software engineering. It is crucial to address challenges such as high costs, large model sizes, and the nuances of prompt engineering. Moreover, these models must be able to understand and handle the complex configurations that occur in SE. There is an implication of bias, since LLMs learn based on existing biases in the training data. With appropriate techniques and safeguards, the limitations of bias and scale can be addressed and even reduced. The technology may enable those who don’t have specialized expertise in software engineering to address tasks that might otherwise be out of reach.
+
+Future research could explore different LLM architectures and training techniques to improve performance. There is also a potential for integrating LLMs into interactive tools that allow human experts to guide the sampling process. The integration could prove to be a potential mechanism for incorporating domain-specific knowledge and improve the relevance and effectiveness of LLM guidance. There are many scenarios for how human experts can combine their knowledge with LLMs, and future research should examine these more closely.
+
+**Conclusion Section:**
+
+This paper explores the effectiveness of using Large Language Models (LLMs) as sampling methods for Multi-Objective Optimization (MOO) tasks in Software Engineering (SE), where labeled data is often limited.
+
+The exploration of the research questions has led to key findings. To address RQ1, our results show that LLMs, when used as samplers, significantly improve the efficiency of SE optimization workflows. In relation to RQ2, this method is effective even for high-dimensional datasets. Furthermore, in connection to RQ3, this method reduces labeling costs compared to traditional methods.
+
+In summary, our study makes the following contributions. First, a novel method uses ensemble of LLM one-shot learners to boost active learning. Second, an empirical comparison of ”LLM” with alternative methods was conducted across 49 datasets. Third, a reproduction package was developed to replicate our results with data and scripts to promote open science.
+
+The demonstrated effectiveness of LLMs as samplers provides a pathway for SE practitioners to improve efficiency in their workflows, particularly in data-scarce optimization tasks. This offers a tangible benefit to real-world software engineering tasks.
+
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/9775184/12c515dc-cac3-4f00-8c93-9f349efa12ea/LaTeX_DL_468198_240419.pdf
+
+---
+Answer from Perplexity: pplx.ai/share
+
+
+=========
+
+data schortage problem
+
+Okay, I will synthesize the information from both papers' Section 2.2 (and related context) into a single discussion, without explicitly referencing that I'm drawing from two separate sources. The focus will be on the general challenges of data scarcity in software engineering optimization.
+
+**Discussion: Data Scarcity in Software Engineering Optimization**
+
+Applying machine learning techniques to software engineering (SE) optimization tasks holds immense promise, yet a fundamental challenge persists: the scarcity of high-quality, labeled data. Traditional machine learning models, including many deep learning approaches, often demand vast quantities of data to achieve robust performance and avoid issues like overfitting. However, several factors conspire to limit the availability of suitable data in SE.
+
+One major issue is the difficulty and cost associated with obtaining reliable labels for SE data. Often, the process of collecting data can be error-prone and yield dubious quality data. This can occur when data labels may be inaccurate. This necessitates secondary processes for cleaning and validating the data, further reducing the size of usable datasets. Even when labels appear readily available, they may be subject to biases or inconsistencies that undermine their utility. To ensure the reliability and integrity of the resulting models, it's often necessary to focus the analysis on a small and high-quality subset of the data.
+
+Additionally, there are often stark disparities in the cost of acquiring independent and dependent variables. For instance, gathering data on software metrics (e.g., lines of code, cyclomatic complexity) is relatively straightforward. In contrast, obtaining corresponding information on development effort, defect rates, or user satisfaction often requires time-consuming manual analysis, expert judgment, or costly user studies. This disparity results in an abundance of unlabeled data (i.e., features without corresponding target values) and a shortage of labeled data needed for training supervised learning models.
+
+The process of gathering expert-labeled data is another key bottleneck. The expertise needed is time-consuming and often only a few, very small labels are generated each hour. This fundamentally limits the amount of data that can be practically acquired, especially given that subject matter experts (SMEs) are typically in high demand and have limited time to dedicate to data labeling efforts. The slow pace of data collection underscores the need for techniques that can effectively leverage limited data and minimize reliance on extensive manual labeling.
+
+These challenges highlight a critical need for innovative approaches to SE optimization that can effectively address data scarcity. Active learning, meta-learning, few-shot learning, and transfer learning represent promising avenues for developing models that can generalize from limited examples, leverage prior knowledge, or transfer insights from related tasks. By carefully selecting the most informative data points to label, employing techniques that can learn from small amounts of data, or leveraging knowledge from related tasks, these methods offer the potential to overcome the limitations imposed by data scarcity and unlock the full potential of machine learning for SE optimization. LLMs can potentially fill the gap in SE.
+
+**Note:** I have focused on creating a cohesive narrative that integrates the core ideas from both papers, specifically addressing the data scarcity problem and potential solutions.
+
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/9775184/36c167f5-5628-48e7-bbdd-f1897041869d/2501.00125v1.pdf
+
+---
+Answer from Perplexity: pplx.ai/share

@@ -1,0 +1,150 @@
+ \begin{minipage}[t]{0.5\textwidth}
+% SECOND COLUMN TABLE 1
+
+ 
+
+\begin{table}[H]
+\centering
+\scriptsize
+
+{\bf Column 1 \\ Prior results, from~\cite{senthilkumar2024can}. \\  (no ensembles).}
+\vspace{5mm}
+
+\begin{tabular}{c|c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c} 
+&\multicolumn{7}{c}{\textbf{Scott-Knott Rankings}}\\
+
+  & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+LLM Warms  & \colorbox{darkred}{\makebox[0.4cm][l]{\textbf{100}}} &  & &  &  &  &  \\
+Exploit  & \colorbox{red}{\makebox[0.3cm][l]{73}} & 18 & 9 & & & &  \\
+UCB\_GPM & \colorbox{red}{\makebox[0.3cm][l]{55}} & \colorbox{lightred}{\makebox[0.3cm][l]{27}} &  & 9& &   \\
+TPE & \colorbox{lightred}{\makebox[0.3cm][l]{27}} & \colorbox{lightred}{\makebox[0.3cm][l]{27}} & & 9 & 18 & 9\\
+Explore   &   9 & 18 & 18 & \colorbox{lightred}{\makebox[0.3cm][l]{27}}& & &  \\
+random    & \colorbox{red}{\makebox[0.3cm][l]{36}} &  & 9 & 9 & 9 & 9 \\
+Baseline  & & & & & 9 &\colorbox{lightred}{\makebox[0.3cm][l]{18}} &  \\
+\hline
+\end{tabular}
+\caption{Low dimensional   ($x < 6$).}\label{lo0}
+\end{table}
+
+% Add vertical spacing between tables 5 and 6
+
+
+% SECOND COLUMN TABLE 2
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{c|c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c}  
+&\multicolumn{7}{c}{\textbf{Scott-Knott Rankings}}\\
+
+  & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+
+UCB\_GPM & \colorbox{darkred}{\makebox[0.3cm][l]{\textbf{64}}} & 18 & 9 & 9 &  & &9 \\
+LLM Warms  & \colorbox{darkred}{\makebox[0.3cm][l]{\textbf{64}}} &  9& 18&  & &  &  \\
+Exploit  & \colorbox{red}{\makebox[0.3cm][l]{45}} & 18 & \colorbox{lightred}{\makebox[0.3cm][l]{27}} & 18 &  10 & &  \\
+TPE & \colorbox{red}{\makebox[0.3cm][l]{36}} & 18 & 18 & 18 & & 9\\
+random    & \colorbox{lightred}{\makebox[0.3cm][l]{27}} & 18 &  \colorbox{lightred}{\makebox[0.3cm][l]{27}}& 18 & &  \\
+Explore   &   27 & 9 & 18 & \colorbox{lightred}{\makebox[0.3cm][l]{20}} & & 10& 10 \\
+Baseline  & 9 & 9& 9 &  &  & 18 & \\
+\hline
+\end{tabular}
+\caption{Medium dim.   ($5 < x < 11$).}\label{med0}
+\end{table}
+
+
+% SECOND COLUMN TABLE 3
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{c|c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c} 
+&\multicolumn{7}{c}{\textbf{Scott-Knott Rankings}}\\
+  & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+
+UCB\_GPM & \colorbox{darkred}{\makebox[0.4cm][l]{\textbf{100}}} &  & & &  & &  \\
+LLM Warms & \colorbox{red}{\makebox[0.3cm][l]{\textbf{53}}} & 13 & 7& 13 &  &  &  \\
+Exploit  & \colorbox{red}{\makebox[0.3cm][l]{\textbf{47}}} & 13 & 13 & 13 &   & &  \\
+Explore   & 7 &  & 13 & 20 & 20& &  \\
+TPE & \colorbox{red}{\makebox[0.3cm][l]{\textbf{40}}} & 13 & 7 & 13 & 7 & 7 \\
+
+random    & &\colorbox{lightred}{\makebox[0.3cm][l]{27}} & \colorbox{lightred}{\makebox[0.3cm][l]{27}} & 20& 13 & 13 \\
+Baseline & &7 & 13&  & 9 & 27 &  \\
+\hline
+\end{tabular}
+\caption{High dimensional   ($x > 10$).}\label{hi0}
+\end{table}
+
+\end{minipage}
+
+\hspace{0.01\textwidth} % <-- SMALL SPACE BETWEEN COLUMNS
+\begin{minipage}[t]{0.5\textwidth}
+% FIRST COLUMN TABLE 1
+\begin{table}[H]
+\centering
+\scriptsize
+{\bf Column 2 \\ Our results \\  (with few-shot ensembles).}
+\vspace{5mm}
+
+\begin{tabular}{c|c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c} 
+&\multicolumn{7}{c}{\textbf{Scott-Knott Rankings}}\\
+
+  & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+SynthCore  & \colorbox{darkblue}{\makebox[0.3cm][l]{\textbf{86}}} & 7  & &  &  &  &  \\
+Exploit  & \colorbox{blue}{\makebox[0.3cm][l]{\textbf{71}}} & 7 & 7 & 7 &  7 & &  \\
+UCB\_GPM & \colorbox{blue}{\makebox[0.3cm][l]{\textbf{43}}} & \colorbox{lightblue}{\makebox[0.3cm][l]{29}} & 7 & 7& 14 & &  \\
+TPE & 7 & \colorbox{lightblue}{\makebox[0.3cm][l]{29}} & 7 &  14&  14 \\
+Explore   &   7 & 7 & \colorbox{lightblue}{\makebox[0.3cm][l]{29}} & \colorbox{blue}{\makebox[0.3cm][l]{36}} & 14& 7& 7 \\
+random    & 7 & \colorbox{blue}{\makebox[0.3cm][l]{36}} & \colorbox{lightblue}{\makebox[0.3cm][l]{29}} & 14 & 7 & 7 \\
+Baseline  & & & & & 9 & \colorbox{lightblue}{\makebox[0.3cm][l]{21}} &  \\
+\hline
+\end{tabular}
+\caption{Low dimensional   ($x < 6$).}\label{lo}
+\end{table}
+% FIRST COLUMN TABLE 2
+ \begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{c|c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c} 
+&\multicolumn{7}{c}{\textbf{Scott-Knott Rankings}}\\
+
+  & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+SynthCore  & \colorbox{darkblue}{\makebox[0.3cm][l]{\textbf{85}}} &  & &  &  8&  &  \\
+UCB\_GPM & \colorbox{blue}{\makebox[0.3cm][l]{\textbf{77}}} & 8 & 8 & &  & & \\
+Exploit  & \colorbox{blue}{\makebox[0.3cm][l]{\textbf{69}}} &  & 8 & 8 &  8 & &  \\
+TPE & \colorbox{blue}{\makebox[0.3cm][l]{39}} & 8 & 8 & 15& 15 & \\
+random    & \colorbox{blue}{\makebox[0.3cm][l]{31}} & 15 &  \colorbox{blue}{\makebox[0.3cm][l]{31}}& 15 & &  \\
+Explore   &   9 & 9 & \colorbox{blue}{\makebox[0.3cm][l]{41}} & \colorbox{darkblue}{\makebox[0.3cm][l]{23}} & & 8& 8 \\
+Baseline  & 8& & 15& 8& 15 & 15 &  8\\
+\hline
+\end{tabular}
+\caption{Medium dim.   ($5 < x < 11$).}\label{med}
+\end{table}
+
+% FIRST COLUMN TABLE 3
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{c|c@{~}c@{~}c@{~}c@{~}c@{~}c@{~}c}
+&\multicolumn{7}{c}{\textbf{Scott-Knott Rankings}}\\
+
+  & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline
+SynthCore  & \colorbox{darkblue}{\makebox[0.3cm][l]{\textbf{71}}} & 5 & 11&  8&  &  &  \\
+UCB\_GPM & \colorbox{darkblue}{\makebox[0.3cm][l]{\textbf{68}}} & 11 & 11 & &  & & 5 \\
+Explore   & \colorbox{blue}{\makebox[0.3cm][l]{37}} & 11 & \colorbox{lightblue}{\makebox[0.3cm][l]{21}} & 5 & 16& &  \\
+TPE &\colorbox{blue}{\makebox[0.3cm][l]{32}} & 16 &16 & 5 & 5 & 5 \\
+Exploit  & 16 & 16 & \colorbox{blue}
+{\makebox[0.3cm][l]{32}} & 11 &  5 & 5& 5 \\
+random    & &\colorbox{lightblue}{\makebox[0.3cm][l]{21}} & \colorbox{lightblue}{\makebox[0.3cm][l]{21}} &  16& 11 & 11 \\
+Baseline  & & & 5& 11& 11 & \colorbox{lightblue}{\makebox[0.3cm][l]{26}} & 5 \\
+\hline
+\end{tabular}
+\caption{High dimensional   ($x > 10$).}\label{hi}
+\end{table}
+
+\vspace{5mm} 
+\end{minipage}
+

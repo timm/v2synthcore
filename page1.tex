@@ -1,0 +1,207 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+
+\RequirePackage{fix-cm}
+%
+%\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{alltt}
+
+\usepackage{amsmath} % Required for \DeclareMathOperator*
+\DeclareMathOperator*{\argmax}{arg\,max}
+\usepackage{amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{pifont}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{fancyvrb}
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+%\usepackage{lmodern}
+\usepackage{url}
+% \usepackage[hidelinks]{hyperref}
+\usepackage{adjustbox}
+
+\usepackage{wrapfig} 
+\usepackage{changepage} 
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage{cite}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{longtable}
+
+\definecolor{niceblue}{HTML}{0000FF}
+
+\newcommand{\BLUE}{\color{niceblue}}
+\newcommand{\BLACK}{\color{black}}
+
+ \usepackage[hidelinks]{hyperref}
+
+\newcommand{\there}[1]{%
+  \hyperlink{resp:#1}{%
+    %\textcolor{gray}{➜}~%
+    \fcolorbox{black}{black!15}{%
+      \bfseries\scriptsize #1%
+    }~on page \pageref{resp:#1}%
+  }%
+}
+
+
+\newcommand{\here}[1]{%
+  \hypertarget{resp:#1}{}% create the target anchor
+  \fcolorbox{black}{black!15}{%
+    \label{resp:#1}%
+    \bfseries\scriptsize  {#1}%
+  }%
+}
+
+
+
+\definecolor{lightblue}{rgb}{0.85,0.9,1}
+\definecolor{blue}{rgb}{0.5,0.75,1}
+\definecolor{darkblue}{rgb}{0,0.5,1}
+
+\definecolor{lightred}{rgb}{1,0.85,0.85}
+\definecolor{red}{rgb}{1,0.5,0.5}
+\definecolor{darkred}{rgb}{1,0,0}
+
+\definecolor{codeblue}{rgb}{0.1,0.1,0.7}
+\definecolor{codegreen}{rgb}{0.1,0.6,0.1}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{verylightgray}{rgb}{0.95, 0.95, 0.95}
+
+\newcommand{\coloredcell}[2]{\cellcolor{#1}{\rule{0pt}{0.5ex}\scriptsize #2}}
+
+\usepackage{bm}
+%
+% \usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%
+% insert here the call for the packages your document requires
+%\usepackage{latexsym}
+% etc.
+%
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%
+% Insert the name of "your journal" with
+% \journalname{myjournal}
+%
+\begin{document}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\title{From Brittle to Robust: \\Improving LLM Annotations for SE Optimization 
+%If Not One Then Many: Ensemble of Few Shot Learners for Uncommon SE Optimization Problems %\thanks{Grants or other notes
+%about the article that should go on the front page should be
+%placed here. General acknowledgments should be placed at the end of the article.}
+}
+
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Lohith Senthilkumar         \and
+        Tim Menzies %etc.
+}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{All authors are from Computer Science, North Carolina State University
+   Oval Dr,  Raleigh, NC 27606
+\\\email{panjal@ncsu.edu, timm@ieee.org}}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+ 
+\maketitle
+
+\begin{abstract}
+Software analytics often builds 
+from labeled data.
+Labeling   can be slow, error prone, and expensive.
+When human expertise is scarce,
+SE researchers sometimes
+ask large language models (LLMs) for the   missing labels.
+
+While this has been successful in some domains,
+recent results show that LLM-based  labeling has blind spots.
+Specifically, their labeling is not effective for  higher dimensional multi-objective problems.
+
+
+To address this task, we propose a novel LLM prompting strategy called SynthCore. When one opinion fails,  SynthCore's   combines multiple separated opinions generated by LLMs (with no knowledge of each others' answers) into
+an ensemble of few-shot learners. 
+Simpler than other strategies (e.g. chain-of-thought, multi-agent-debate, etc)   SynthCore   aggregates results from    multiple single prompt sessions (with no crossover between them). 
+
+  SynthCore has been tested on 49 SE multi-objective optimization tasks,
+ handling tasks as diverse as software project management, Makefile configuration, and hyperparameter optimization.
+SynthCore's
+ensemble   found optimizations
+that are better than state-of-the-art alternative approaches  (Gaussian Process Models, Tree of Parzen Estimators,
+active learners in both exploration and exploitation mode). 
+Importantly, these optimizations were made using data labeled by LLMs, without any human opinions.
+
+From these experiments, we conclude that ensembles of few shot learners can successfully annotate high dimensional multi-objective tasks. Further, we speculate that other successful few-shot prompting results could be quickly and easily enhanced  using SynthCore's ensemble approach.
+
+To support open science, all our data and scripts are available  at \url{https://github.com/lohithsowmiyan/lazy-llm/tree/clusters}.
+
+
+ 
+
+\keywords{Active Learning \and Large Language Models \and Multi-Objective Optimization}
+% \PACS{PACS code1 \and PACS code2 \and more}
+\end{abstract}
+
